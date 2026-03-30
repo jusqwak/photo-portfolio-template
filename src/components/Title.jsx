@@ -45,7 +45,7 @@ export default function TitleFront() {
 
         <div className="name-wrapper">
           <span className="name">
-            Ethan <span className="name-italic">Ledesma</span>
+            First <span className="name-italic">Last</span>
           </span>
         </div>
 
