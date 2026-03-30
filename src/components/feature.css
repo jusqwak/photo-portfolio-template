@@ -1,0 +1,196 @@
+.feature-section {
+  width: 100%;
+  background: #0a0a0a;
+  padding-bottom: 120px;
+}
+
+/* ── Header ───────────────────────────────────── */
+.feature-header {
+  padding: clamp(60px, 10vh, 120px) clamp(24px, 8vw, 120px) clamp(40px, 6vh, 80px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.feature-header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.feature-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  font-size: clamp(8px, 1.2vw, 11px);
+  letter-spacing: 0.45em;
+  color: rgba(255, 255, 255, 0.3);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.feature-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 7vw, 96px);
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 32px;
+}
+
+.header-line {
+  width: 48px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ── Rows ─────────────────────────────────────── */
+.feature-rows {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease, transform 0.9s ease;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Alternating slide directions */
+.feature-row.row-left {
+  transform: translateX(-24px);
+}
+.feature-row.row-right {
+  transform: translateX(24px);
+}
+
+.feature-row.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* On wider screens: image + info side by side */
+@media (min-width: 768px) {
+  .feature-row {
+    grid-template-columns: 1fr 1fr;
+    min-height: clamp(320px, 45vw, 600px);
+  }
+
+  /* Even rows: image left, info right */
+  .feature-row.row-left .row-img-wrap { order: 1; }
+  .feature-row.row-left .row-info     { order: 2; }
+
+  /* Odd rows: info left, image right */
+  .feature-row.row-right .row-img-wrap { order: 2; }
+  .feature-row.row-right .row-info     { order: 1; }
+}
+
+/* ── Media (image + video shared styles) ─────── */
+.row-img-wrap {
+  overflow: hidden;
+  position: relative;
+  height: clamp(220px, 40vw, 600px);
+}
+
+@media (min-width: 768px) {
+  .row-img-wrap {
+    height: auto;
+  }
+}
+
+.row-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.05);
+  transition: transform 0.8s ease, filter 0.8s ease;
+  filter: brightness(0.85);
+}
+
+.feature-row:hover .row-media {
+  transform: scale(1.0);
+  filter: brightness(1);
+}
+
+/* ── Video badge ──────────────────────────────── */
+.video-badge {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding: 5px 10px 5px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.feature-row:hover .video-badge {
+  opacity: 0;
+}
+
+/* ── Info Panel ───────────────────────────────── */
+.row-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(28px, 5vw, 72px) clamp(24px, 6vw, 80px);
+  background: #0a0a0a;
+  position: relative;
+}
+
+.row-number {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  font-size: clamp(9px, 1.2vw, 11px);
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.2);
+  margin-bottom: clamp(16px, 3vw, 28px);
+  display: block;
+}
+
+.row-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(28px, 4.5vw, 64px);
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: -0.01em;
+  line-height: 1.05;
+  margin: 0 0 clamp(12px, 2vw, 20px) 0;
+}
+
+.row-desc {
+  font-family: 'Jost', sans-serif;
+  font-weight: 200;
+  font-size: clamp(9px, 1.3vw, 12px);
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  margin: 0 0 clamp(20px, 4vw, 40px) 0;
+}
+
+.row-year {
+  font-family: 'Jost', sans-serif;
+  font-weight: 100;
+  font-size: clamp(9px, 1vw, 11px);
+  letter-spacing: 0.35em;
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* ── Mobile: stack image above info ──────────── */
+@media (max-width: 767px) {
+  .feature-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row-img-wrap { order: 1; }
+  .row-info     { order: 2; }
+}
