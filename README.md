@@ -1,4 +1,7 @@
 # Photo Portfolio Template
+A stylized photo portfolio template.
+Allows the display of both photos and videos.
+
 
 This is a template created for a friend. Created with a template release for others to view
 
